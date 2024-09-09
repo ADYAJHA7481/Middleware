@@ -1,0 +1,15 @@
+{
+  "name": "middleware",
+  "version": "1.0.0",
+  "description": "Middleware in Express are  Functions that come into play  after the server  receives the request  and before the  response is sent  to the client",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
