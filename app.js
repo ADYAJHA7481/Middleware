@@ -1,5 +1,6 @@
 const express = require("express")
 const app = express();
+const ExpressError = require("./ExpressError");
 
 //logger - morgan
 // app.use((req,res,next) =>{
@@ -13,7 +14,7 @@ const checkToken = (req,res,next)=>{
     if(token === "giveaccess"){
         next();
     }
-    throw new Error("ACCESS DENIED!");
+    throw new ExpressError(404,"ACCESS DENIED!");
 };
 
 // app.get("/random", (req,res,next)=>{
@@ -21,9 +22,9 @@ const checkToken = (req,res,next)=>{
 //     next();
 // });
 
-// app.get("/wrong",(req,res)=>{
-//     abcd = abcd;
-// })
+app.get("/err",(req,res)=>{
+    abcd = abcd;
+})
 
 app.get("/api", checkToken, (req,res)=>{
     res.send("Data");
@@ -34,12 +35,13 @@ app.get("/", (req,res)=>{
 });
 
 app.use((err,req,res,next)=>{
-    console.log(err);
+    console.log("--------Error--------");
+    res.send(err);
 });
 
-app.use((req,res)=>{
-    res.send("Page not found!!");
-});
+// app.use((req,res)=>{
+//     res.send("Page not found!!");
+// });
 
 app.listen(8080,()=>{
     console.log("server is listening to port 8080");
