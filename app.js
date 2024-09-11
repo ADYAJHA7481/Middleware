@@ -34,9 +34,13 @@ app.get("/", (req,res)=>{
     console.log("Hii, I am root");
 });
 
+app.get("/admin",(req,res)=>{
+    throw new ExpressError(403,"Access to admin Forbidden");
+});
+
 app.use((err,req,res,next)=>{
-    console.log("--------Error--------");
-    res.send(err);
+    let {status = 500 , message } = err;
+    res.status(status).send(message);
 });
 
 // app.use((req,res)=>{
